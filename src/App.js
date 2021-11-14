@@ -1,35 +1,39 @@
-import './App.css';
-import React, { useState } from 'react'
-import Navbar from './components/Navbar';
-import Textform from './components/Textform';
-import About from './components/About';
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route,
-//   Link
-// } from "react-router-dom";
-
+import "./App.css";
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Textform from "./components/Textform";
+import About from "./components/About";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState("light");
 
   function changeMode() {
-    if (mode === 'light') {
-      setMode('dark');
+    if (mode === "light") {
+      setMode("dark");
       document.body.style.backgroundColor = "#111";
-    }
-    else {
-      setMode('light');
+    } else {
+      setMode("light");
       document.body.style.backgroundColor = "#ffffff";
     }
   }
 
   return (
     <>
-      <Navbar title="TextUtils" mode={mode} toggleHandler={changeMode} />
-      <About mode={mode} />
-      <Textform mode={mode} heading="Enter the text to analyze" />
+      <Router>
+        <Navbar title="TextUtils" mode={mode} toggleHandler={changeMode} />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Textform mode={mode} heading="Enter the text to analyze" />
+            }
+          />
+
+          <Route path="/about" element={<About mode={mode} />} />
+        </Routes>
+      </Router>
 
       {/* <BrowserRouter>
         <Routes>
@@ -40,7 +44,6 @@ function App() {
             </div> 
         </Routes>
       </BrowserRouter> */}
-
     </>
   );
 }
