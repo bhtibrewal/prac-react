@@ -1,9 +1,9 @@
 import "./App.css";
 import React, { useState } from "react";
 import Navbar from "./components/Navbar";
-import Textform from "./components/Textform";
 import About from "./components/About";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import WishList from "./components/WishList";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -27,7 +27,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Textform mode={mode} heading="Enter the text to analyze" />
+              <WishList heading="Wish List" mode={mode} />
             }
           />
 
